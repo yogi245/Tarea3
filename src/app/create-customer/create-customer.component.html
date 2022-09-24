@@ -1,0 +1,73 @@
+<div class="card bg-light text-black w-75 mx-auto">
+
+  <div class="card-header">Registro</div>
+
+  <div class="card-body">
+
+        <form (ngSubmit)="save()" #clienteForm="ngForm">
+
+           <div class="form-group">
+
+              <label for="descripcion">Nombre</label>
+
+              <input type="text" class="form-control" id="name"
+
+                 [(ngModel)]="customer.name"
+
+                 name="name" required #name="ngModel">
+
+              <div class="alert alert-danger"
+
+                 *ngIf="name.invalid && (name.dirty || name.touched)">
+
+                 <div *ngIf="name.errors">
+
+                    Nombre requerido.
+
+                 </div>
+
+              </div>
+
+           </div>
+
+           <div class="form-group">
+
+              <label for="email">Email</label>
+
+              <input type="text" class="form-control" id="email" [(ngModel)]="customer.email"
+
+                 name="email">
+
+           </div>
+
+
+
+           <div class="form-group">
+
+              <label for="fecha_de_nacimiento">Fecha de nacimiento</label>
+
+              <input type="text" class="form-control" id="fecha_de_nacimiento" [(ngModel)]="customer.fecha_de_nacimiento"
+
+                 name="fecha_de_nacimiento">
+
+           </div>
+
+
+
+           <div class="form-group">
+
+              <button type="submit" class="btn btn-success"
+
+                 [disabled]="!clienteForm.form.valid">Registrar</button>
+
+           </div>
+
+
+
+        </form>
+
+
+
+  </div>
+
+ </div>
