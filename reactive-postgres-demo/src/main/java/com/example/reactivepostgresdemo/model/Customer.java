@@ -21,7 +21,10 @@ public class Customer {
     @Column
     private Date fecha_de_nacimiento;
 
-    public Customer(Integer id, String name, String email, String fecha_de_nacimiento) {
-
+    public Customer(Integer id, String name, String email, Date fecha_de_nacimiento) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.fecha_de_nacimiento = fecha_de_nacimiento;
     }
 }

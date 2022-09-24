@@ -1,6 +1,4 @@
 package com.example.reactivepostgresdemo;
-
-
 import com.example.reactivepostgresdemo.model.Customer;
 import com.example.reactivepostgresdemo.repo.CustomerRepository;
 import org.junit.jupiter.api.Test;
@@ -12,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.sql.Date;
 
 @WebFluxTest
 public class CustomerControlTest {
@@ -25,8 +25,8 @@ public class CustomerControlTest {
     @Test
     void testGetCustomer(){
         Flux<Customer> customerFlux = Flux.just
-                (new Customer(8,"vilma","vilma@hotmail.com","2022-09-18")
-        ,new Customer(1,"juan","vilma@hotmail.com","2022-09-18"));
+                (new Customer(1, "pedro", null, null )
+                        ,new Customer(1, "juan", null, null ));
 
         Mockito.when(customerRepository.findAll()).thenReturn(customerFlux);
 
@@ -37,15 +37,15 @@ public class CustomerControlTest {
                 .expectStatus().isOk()
                 .expectBody()
                 .jsonPath("$").isArray()
-                .jsonPath("$[0].id").isEqualTo(8)
-                .jsonPath("$[0].name").isEqualTo("vilma")
-                .jsonPath("$[0].email").isEqualTo("vilma@hotmail.com")
-                .jsonPath("$[0].fecha_de_nacimiento").isEqualTo("2022-09-18");
+                .jsonPath("$[0].id").isEqualTo(1)
+                .jsonPath("$[0].name").isEqualTo("pedro")
+                .jsonPath("$[0].email").isEqualTo(null)
+                .jsonPath("$[0].fecha_de_nacimiento").isEqualTo(null);
     }
 
     @Test
     void testPostCustomer(){
-        Customer c = new Customer(1,"pedro",null,null);
+        Customer c = new Customer(1, "pedro", null, null );
         Mono<Customer> monoC = Mono.just(c);
 
         Mockito.when(customerRepository.save(c)).thenReturn(monoC);
