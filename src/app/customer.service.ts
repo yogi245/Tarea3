@@ -16,8 +16,8 @@ export class CustomerService {
     constructor(private http: HttpClient) { }
 
   getProductList(): Observable<any>{
-    console.log("LLamando a REST:" + this.urlBase+ "/{id}");
-    return this.http.get(this.urlBase+ '/{id}').pipe(
+    console.log("LLamando a REST:" + this.urlBase + '{id}');
+    return this.http.get(this.urlBase+ '{id}').pipe(
       map(response => response as Customer[]),
       catchError(e => {
         alert(e.status+ ":" + e.error.message)
@@ -33,7 +33,7 @@ export class CustomerService {
 
   createCostumer(costumer: Object) : Observable<Object>{
 
-    return this.http.post(this.urlBase+'/{id}', costumer, {headers: this.httpHeaders});
+    return this.http.post(this.urlBase+'/customers', costumer, {headers: this.httpHeaders});
   }
 
 }
