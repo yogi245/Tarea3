@@ -28,7 +28,7 @@ export class CreateCustomerComponent implements OnInit {
 
    );
 
-   console.log("Esperar por favor")
+   console.log("Esperar por favor que esta cargando la pagina.")
 
   }
 
